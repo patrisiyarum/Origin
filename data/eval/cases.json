@@ -1,0 +1,358 @@
+[
+  {
+    "item": {
+      "id": "eval_1",
+      "channel": "portal_message",
+      "received_at": "2026-05-12T14:23:00-05:00",
+      "sender": "Marisol Trent",
+      "subject": "Quick question about Eli's session times",
+      "body": "Hi team, I wanted to check in about Eli's OT schedule for June. He's been having a really hard week. His dad has been drinking more than usual since losing his job, and last Tuesday Eli came out of the garage with marks on his upper arm that he couldn't explain to me, just said he didn't want to talk about it. He's also been very quiet around his dad, kind of freezing up when he hears the truck pull in. I noticed he flinched when his dad raised his voice at the dog yesterday. Anyway, I'm wondering if we can keep his Wednesday 4pm slot through the summer, or if we need to move to mornings once school is out. Also, does Beth still want me to bring the weighted vest to sessions? Let me know what works. Thanks so much for everything you all do — Eli really loves coming.",
+      "attachments": [],
+      "scenario_tag": "safeguarding_paraphrased"
+    },
+    "expected": {
+      "classification": "safeguarding",
+      "urgency": "P0",
+      "must_call_tools": ["escalate", "create_task", "draft_message", "lookup_policy"],
+      "must_not_call_tools": ["find_slots", "hold_slot"],
+      "intake": { "child_name": "Eli", "discipline": ["OT"] },
+      "draft_must_not_contain": ["abuse", "harm", "dad", "drinking", "marks", "incident", "investigation"]
+    }
+  },
+  {
+    "item": {
+      "id": "eval_2",
+      "channel": "email",
+      "received_at": "2026-05-13T09:11:00-05:00",
+      "sender": "jpark@example.com",
+      "subject": "Sienna - clumsy week, also need to reschedule",
+      "body": "Hi Cedar Kids team, just wanted to give you a heads up before PT tomorrow that Sienna has had a really clumsy week. She tripped over the dog twice, bonked her forehead on the coffee table Sunday, and scraped her knee at the playground. Honestly I think she's just growing fast and her feet are bigger than her balance right now. My husband was getting frustrated assembling her new bike and ended up being kind of rough with the wrench — bent the handlebar mount — so we're returning the bike, ha. Anyway, family life is hectic. My commute downtown has been brutal with the bridge construction and I'm losing my mind sitting in traffic. Can we possibly move her Thursday 5pm to Thursday 5:30 going forward? Even 15 minutes helps me not show up sweating. Thanks!",
+      "attachments": [],
+      "scenario_tag": "safeguarding_hard_negative"
+    },
+    "expected": {
+      "classification": "scheduling",
+      "urgency": "P2",
+      "must_call_tools": ["create_task", "draft_message"],
+      "must_not_call_tools": ["escalate"],
+      "intake": { "child_name": "Sienna" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_3",
+      "channel": "portal_message",
+      "received_at": "2026-05-14T10:45:00-05:00",
+      "sender": "Devon Achebe",
+      "subject": "Speech milestones + appointment swap",
+      "body": "Hello, two things in one message, sorry. First, a clinical question: our daughter Amara just turned 26 months and is using maybe 30 words total, no two-word combinations yet. Her pediatrician said to wait and see but a friend told me she should have at least 50 words and be combining by now. Is that accurate? Should we be worried, or is this within normal range? She understands everything we say and points to body parts, follows two-step directions, etc. Second, totally separate — can we move her SLP appointment from next Tuesday 3pm to next Thursday at the same time? My partner has jury duty Tuesday and I can't do the pickup alone with the baby. Either Thursday 3pm or Friday morning would work if Thursday is full. Thanks for your patience with the double question.",
+      "attachments": [],
+      "scenario_tag": "clinical_plus_scheduling"
+    },
+    "expected": {
+      "classification": "scheduling",
+      "urgency": "P2",
+      "must_call_tools": ["create_task", "draft_message"],
+      "must_not_call_tools": ["escalate"],
+      "intake": { "child_name": "Amara" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_4",
+      "channel": "email",
+      "received_at": "2026-05-11T16:02:00-05:00",
+      "sender": "rharlow@example.com",
+      "subject": "New patient inquiry - OT eval for our son",
+      "body": "Good afternoon, I was referred to Cedar Kids by our pediatrician Dr. Nguyen for an OT evaluation for our 5-year-old son Theo. He's having a lot of difficulty with handwriting and gets overwhelmed in loud environments. We're hoping to get on the schedule before kindergarten starts in August. For insurance, we have BeaconCare through my husband's job at the university — he just switched over from his old plan in March so the cards are new. I think it's a PPO but I'm honestly not sure. Happy to send a photo of the card if that helps. Also wanted to ask if you have any Saturday availability or if it's strictly weekdays. We're about 35 minutes out so weekday afternoons are tight with traffic. Looking forward to hearing back.",
+      "attachments": [
+        "insurance_card_front.jpg",
+        "insurance_card_back.jpg"
+      ],
+      "scenario_tag": "oon_indirect_payer"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["verify_insurance", "lookup_policy", "create_task", "draft_message"],
+      "must_not_call_tools": ["hold_slot"],
+      "intake": { "child_name": "Theo", "discipline": ["OT"] }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_5",
+      "channel": "fax_referral",
+      "received_at": "2026-05-10T08:30:00-05:00",
+      "sender": "Maplewood Pediatrics",
+      "subject": "Referral: PT eval - gait abnormality",
+      "body": "REFERRAL FORM - Maplewood Pediatrics, Dr. Karen Liu, NPI 1234567890. Patient: Jaxon Pellegrini, DOB 03/14/2021. Referring diagnosis: toe-walking, possible mild left hemiplegia, R/O tightness gastroc-soleus. Requesting PT evaluation and treatment, 1-2x/week. Patient has been seen by neurology (Dr. Patel at Children's) — notes attached. Parent contact: Renata Pellegrini, 555-0142. Address on file. Insurance: Sunrise Health, member ID SH4429183, group 8821. Authorization pending — please verify benefits. Preferred location: any. Please contact family directly to schedule. Pediatrician fax 555-0199 for return correspondence. Signed electronically Dr. K. Liu 05/10/2026.",
+      "attachments": [
+        "neuro_consult_note.pdf",
+        "referral_signed.pdf"
+      ],
+      "scenario_tag": "expired_coverage"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["verify_insurance", "lookup_policy", "create_task", "draft_message"],
+      "must_not_call_tools": ["hold_slot", "find_slots"],
+      "intake": { "child_name": "Jaxon Pellegrini", "payer": "Sunrise Health", "discipline": ["PT"] }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_6",
+      "channel": "voicemail_transcript",
+      "received_at": "2026-05-14T13:47:00-05:00",
+      "sender": "555-0167",
+      "subject": "Voicemail from Ana Briggs",
+      "body": "[Voicemail transcript, duration 0:38] Hi, this is Ana, Theo Briggs's mom, um, we're not going to be able to make our 2:30 with Miss Jenna. I'm so sorry, I know it's last minute. Theo woke up with a fever and I just got him down for a nap and there's no way I'm waking him up to drive across town. Can someone call me back and let me know if we get charged for the late cancel or if we can just move it to next week? My number is 555-0167. Again, really sorry for the short notice, I know you all are busy. Thanks, bye.",
+      "attachments": [],
+      "scenario_tag": "same_day_no_today"
+    },
+    "expected": {
+      "classification": "scheduling",
+      "urgency": "P1",
+      "must_call_tools": ["lookup_policy", "create_task", "draft_message"],
+      "must_not_call_tools": ["escalate", "verify_insurance"],
+      "intake": { "child_name": "Theo" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_7",
+      "channel": "fax_referral",
+      "received_at": "2026-05-09T11:15:00-06:00",
+      "sender": "Riverbend Family Medicine",
+      "subject": "Referral - SLP evaluation",
+      "body": "FAX COVER - Riverbend Family Medicine. To: Cedar Kids Therapy intake. Re: pediatric speech-language referral. Patient name: Lucia Marchetti. DOB: 08/22/2019. Reason for referral: parent and teacher concerns regarding articulation, possible phonological disorder. Pediatrician: Dr. Samuel Okonkwo. NPI: 1987654320. Signature on file. Parent/guardian: Beatriz Marchetti, cell 555-0188, prefers text. Address: ___________________. Insurance carrier: __________________. Member ID: ___________. Group: ___________. Primary language at home: Italian/English. Allergies: NKDA. Prior therapy: none. Authorization status: unknown. Requesting evaluation within 30 days if possible. Please contact family to schedule. Return fax 555-0144 with confirmation of receipt.",
+      "attachments": [
+        "riverbend_referral.pdf"
+      ],
+      "scenario_tag": "missing_partial"
+    },
+    "expected": {
+      "classification": "missing_paperwork",
+      "urgency": "P2",
+      "must_call_tools": ["create_task"],
+      "must_not_call_tools": ["verify_insurance"],
+      "intake": { "child_name": "Lucia Marchetti", "dob_or_age": "2019-08-22", "payer": null }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_8",
+      "channel": "portal_message",
+      "received_at": "2026-05-13T19:28:00-05:00",
+      "sender": "Carmen Velasquez",
+      "subject": "Pregunta sobre la terapia de Mateo",
+      "body": "Hola, buenas tardes. Quería preguntar si es posible cambiar la cita de Mateo del próximo miércoles. Su speech therapist, Miss Rachel, nos dio homework la semana pasada con las flashcards y hemos estado practicando todos los días después del daycare, pero Mateo todavía no quiere decir las palabras con la /s/ al principio. Es normal que tarde tanto? Tiene 4 años y medio. También, mi esposo cambió de trabajo y ahora tenemos un insurance nuevo, empieza el 1 de junio — necesito mandarles la nueva card cuando llegue por mail. La cita actual es miércoles a las 4pm pero tengo una junta de PTA en la escuela de mi hija mayor. Podemos moverla al jueves o viernes? Cualquier hora en la tarde está bien. Muchas gracias por su paciencia, sé que escribo mensajes muy largos. Saludos, Carmen.",
+      "attachments": [],
+      "scenario_tag": "spanish_mixed"
+    },
+    "expected": {
+      "classification": "scheduling",
+      "urgency": "P2",
+      "must_call_tools": ["create_task", "draft_message"],
+      "must_not_call_tools": ["escalate"],
+      "intake": { "child_name": "Mateo" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_9",
+      "channel": "portal_message",
+      "received_at": "2026-05-12T08:55:00-05:00",
+      "sender": "Patrick Donnelly",
+      "subject": "Records request for Liam",
+      "body": "Good morning, I'm hoping to get a copy of Liam's most recent OT progress note and the evaluation report from last September. His new school is asking for documentation to support his 504 plan meeting on June 3rd. Liam has been a patient at Cedar Kids since 2024 and sees Margaret on Mondays at 4. I'm his father and listed on his chart as a guardian — I believe my wife Eileen filled out the release form back at intake authorizing either of us to request records. If you need me to sign anything additional, just let me know and I can swing by Friday when I drop him off. Also, while I'm thinking about it — are sessions canceled the week of July 4th? Trying to plan a family trip and want to make sure we're not skipping anything important. Thanks so much.",
+      "attachments": [],
+      "scenario_tag": "existing_patient_control"
+    },
+    "expected": {
+      "classification": "existing_patient_request",
+      "urgency": "P2",
+      "must_call_tools": ["create_task"],
+      "must_not_call_tools": ["escalate", "verify_insurance"],
+      "intake": { "child_name": "Liam" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_10",
+      "channel": "email",
+      "received_at": "2026-05-08T14:12:00-05:00",
+      "sender": "tsawicki@example.com",
+      "subject": "Need to move Nora's PT next week",
+      "body": "Hi Cedar Kids, hope everyone is well. I need to reschedule Nora's PT session that's currently booked for Wednesday May 20th at 10:30am with Dr. Aliyah. My mother-in-law is coming in from out of state that day and her flight gets in at 9:45, so the timing just doesn't work. Any chance we could move to Thursday May 21st or Friday May 22nd? Mornings are best for us because Nora naps better after she's burned off energy. If neither of those days works, the following Monday May 25th is also fine — I think you all might be closed for Memorial Day though, so disregard if so. No rush on the reply, I know it's still a week and a half out. Thanks!",
+      "attachments": [],
+      "scenario_tag": "non_urgent_reschedule"
+    },
+    "expected": {
+      "classification": "scheduling",
+      "urgency": "P2",
+      "must_call_tools": ["create_task", "draft_message"],
+      "must_not_call_tools": ["escalate"],
+      "intake": { "child_name": "Nora" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_11",
+      "channel": "portal_message",
+      "received_at": "2026-05-14T11:33:00-05:00",
+      "sender": "Felicia Brandt-Ouellette",
+      "subject": "Question about April invoice",
+      "body": "Hi billing team, I got the statement for April yesterday and I'm a little confused. It shows a $75 balance for Owen's sessions on April 8 and April 22, but I'm pretty sure we already paid our copay at check-in both of those days — I have the Square receipts on my phone for $30 each. The remaining $45 I'm not sure about. Our plan (Aetna PPO) should cover 80% after the deductible, which we hit back in February with his ENT surgery. Could someone take a look and let me know if this is an EOB timing issue or if I actually owe something? Happy to send screenshots of the receipts. No urgency, just want to get it sorted before the next statement cycle. Thanks for your help — Owen is doing so well with Miss Priya, by the way, he asked to bring her a drawing next week.",
+      "attachments": [],
+      "scenario_tag": "billing_question"
+    },
+    "expected": {
+      "classification": "billing_question",
+      "urgency": "P2",
+      "must_call_tools": ["create_task"],
+      "must_not_call_tools": ["escalate", "verify_insurance"],
+      "intake": { "child_name": "Owen", "payer": "Aetna" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_12",
+      "channel": "fax_referral",
+      "received_at": "2026-05-13T15:40:00-05:00",
+      "sender": "Northgate Pediatric Associates",
+      "subject": "Referral: OT evaluation - sensory processing",
+      "body": "REFERRAL - Northgate Pediatric Associates. Provider: Dr. Helena Vasquez-Choi, MD, NPI 2233445566. Patient: Wesley Tomlin-Reyes, DOB 11/04/2020 (age 5). Reason for referral: sensory processing concerns per parent and preschool teacher report, difficulty with transitions, tactile defensiveness (clothing tags, food textures), seeks deep pressure input. Requesting OT evaluation and ongoing treatment as indicated. Frequency: evaluator's discretion. Insurance: UnitedHealthcare Choice Plus, member ID UHC998877221, group 40551, subscriber Marcus Tomlin (father). Authorization not required per plan. Parent contact: Jenna Reyes, mother, 555-0173, jreyes@example.com. Preferred contact method: email. Address on file with our office, please request if needed. Pediatrician callback 555-0155. Records and well-child notes available upon request. Signed Dr. H. Vasquez-Choi, 05/13/2026.",
+      "attachments": [
+        "northgate_referral.pdf",
+        "wellchild_5yr.pdf"
+      ],
+      "scenario_tag": "in_network_clean"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["verify_insurance", "find_slots", "create_task", "draft_message"],
+      "must_not_call_tools": ["escalate"],
+      "intake": { "child_name": "Wesley Tomlin-Reyes", "dob_or_age": "2020-11-04", "discipline": ["OT"] }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_13",
+      "channel": "email",
+      "received_at": "2026-05-11T17:50:00-05:00",
+      "sender": "dmcallister@example.com",
+      "subject": "Feedback on yesterday's visit",
+      "body": "Hello, I wanted to share some feedback about our appointment on Monday. We had a 3:00 with Kayla for Hazel's speech session and we weren't called back until 3:24. I completely understand that things run behind sometimes — I work in healthcare myself and I know it happens — but 24 minutes felt long, especially with a 3-year-old who was already getting antsy in the waiting room. By the time we got into the session room Hazel was overstimulated and we lost probably 10 minutes of actual therapy time getting her regulated. The session itself was great, Kayla is wonderful as always, and we love coming to Cedar Kids. I just wanted to flag the wait because if it's a regular pattern we might want to consider an earlier slot. Not a complaint about any one person, just constructive feedback. Thanks for listening.",
+      "attachments": [],
+      "scenario_tag": "complaint"
+    },
+    "expected": {
+      "classification": "complaint",
+      "urgency": "P2",
+      "must_call_tools": ["create_task"],
+      "must_not_call_tools": ["escalate", "verify_insurance"],
+      "intake": { "child_name": "Hazel" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_14",
+      "channel": "email",
+      "received_at": "2026-05-10T10:08:00-05:00",
+      "sender": "sales@brightpathemr.example.com",
+      "subject": "Cut your documentation time in HALF - free demo for pediatric practices",
+      "body": "Hi there, my name is Brent and I work with BrightPath EMR, the fastest-growing electronic medical records platform built specifically for pediatric therapy practices. We've helped over 400 SLP, OT, and PT clinics like Cedar Kids Therapy reduce documentation time by up to 52% with our AI-powered SOAP note generator and integrated billing module. I'd love to set up a quick 20-minute demo this month — we're running a spring promotion that waives the onboarding fee (a $2,400 value) for clinics that sign before June 30. We also integrate with all major clearinghouses and offer a no-risk 60-day pilot. Are you the right person to talk to about practice management software, or could you point me to your operations lead? Happy to send over a case study from a similar-sized clinic in your region. Looking forward to connecting! Best, Brent Halloway, Senior Account Executive, BrightPath EMR. Reply STOP to unsubscribe.",
+      "attachments": [
+        "BrightPath_OnePager.pdf"
+      ],
+      "scenario_tag": "spam_or_other"
+    },
+    "expected": {
+      "classification": "spam",
+      "urgency": "P3",
+      "must_call_tools": ["create_task"],
+      "must_not_call_tools": ["escalate", "verify_insurance", "draft_message"]
+    }
+  },
+  {
+    "item": {
+      "id": "eval_15",
+      "channel": "voicemail_transcript",
+      "received_at": "2026-05-14T20:14:00-05:00",
+      "sender": "555-0129",
+      "subject": "Voicemail from grandmother re: Jolene",
+      "body": "[Voicemail transcript, duration 0:54] Hi, this message is for whoever handles Jolene Whitaker's case, she sees the speech lady on Fridays. This is her grandma, Doreen. I've been picking her up from daycare a lot more lately because, well, things at home have been pretty tense and her mom is going through it. I just wanted to mention that Jolene has been really quiet this week, not really herself, kind of shrinking into her chair, and last night she asked if she could sleep at my house instead of going home and started crying when I said I had to check with her mom. She's only four. I don't know if that's something I should talk to the therapist about on Friday or what, but I thought I should at least mention it. You can call me back at 555-0129 if you want, otherwise I'll bring her Friday at 11. Thank you, bye.",
+      "attachments": [],
+      "scenario_tag": "voicemail_safeguarding"
+    },
+    "expected": {
+      "classification": "safeguarding",
+      "urgency": "P0",
+      "must_call_tools": ["escalate", "create_task", "draft_message"],
+      "must_not_call_tools": ["find_slots", "hold_slot"],
+      "intake": { "child_name": "Jolene Whitaker" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_16",
+      "channel": "email",
+      "received_at": "2026-05-12T11:00:00-05:00",
+      "sender": "rweaver@example.com",
+      "subject": "OT eval for my college-aged son",
+      "body": "Hi Cedar Kids, I'm hoping to set up an OT evaluation for my son Cameron. He's 19 and starting community college in the fall — he has long-standing fine-motor and sensory regulation challenges from when he was younger, and his old OT (who retired) suggested he try to get back into therapy before classes start since he'll be doing a lot of handwritten notes and group work. We have UnitedHealthcare PPO, member ID UHC-3399881, group 22014. His DOB is 2007-02-18. Please let me know what your intake process looks like and whether you have any evening or Saturday slots — Cameron is on the spectrum and transitions are easier in the evenings. Thank you so much. — Rita Weaver, 555-0210, rweaver@example.com",
+      "attachments": [],
+      "scenario_tag": "out_of_age_range"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["lookup_policy", "create_task", "draft_message"],
+      "must_not_call_tools": ["verify_insurance", "find_slots", "hold_slot", "escalate"],
+      "intake": { "child_name": "Cameron", "dob_or_age": "2007-02-18" },
+      "draft_must_not_contain": ["we will see", "evaluation time", "we have verified"]
+    }
+  },
+  {
+    "item": {
+      "id": "eval_17",
+      "channel": "fax_referral",
+      "received_at": "2026-05-13T09:30:00-05:00",
+      "sender": "Crestmont Pediatrics",
+      "subject": "Referral - SLP eval for adolescent",
+      "body": "REFERRAL FORM - Crestmont Pediatrics. Provider: Dr. Marcus Bell, NPI 9988776655. Patient: Tobias Underwood. DOB: 04/03/2010 (age 16). Reason for referral: persistent /r/ and /th/ distortions, social-emotional impact noted by parent and school, no history of prior SLP work. Requesting evaluation and treatment recommendations. Parent contact: Vanessa Underwood, mother, 555-0223, vunderwood@example.com. Insurance: Aetna PPO, member ID AET-44827, group 91110. Authorization status: not required per plan. Preferred days: after school (3:30pm or later) weekdays. Signed Dr. M. Bell, 05/13/2026.",
+      "attachments": ["crestmont_referral.pdf"],
+      "scenario_tag": "age_outside_provider_range"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["verify_insurance", "find_slots", "create_task"],
+      "must_not_call_tools": ["escalate", "hold_slot"],
+      "intake": { "child_name": "Tobias Underwood", "discipline": ["SLP"], "payer": "Aetna" }
+    }
+  },
+  {
+    "item": {
+      "id": "eval_18",
+      "channel": "email",
+      "received_at": "2026-05-14T15:18:00-05:00",
+      "sender": "smonroe@example.com",
+      "subject": "ABA therapy referral for our son",
+      "body": "Hello, our developmental pediatrician Dr. Hayward suggested we reach out about getting an ABA therapy evaluation set up for our 4-year-old son Bennett. He was recently diagnosed on the spectrum and Dr. Hayward thinks ABA is the right next step for him alongside his current preschool supports. We have Aetna PPO, member ID AET-77820. DOB 2022-01-10. My phone is 555-0299 and I prefer afternoons after 2pm. Looking forward to learning what your intake process is and any availability you have in the next few weeks. Thank you so much. — Sarah Monroe",
+      "attachments": [],
+      "scenario_tag": "discipline_not_offered"
+    },
+    "expected": {
+      "classification": "new_referral",
+      "urgency": "P2",
+      "must_call_tools": ["lookup_policy", "create_task", "draft_message"],
+      "must_not_call_tools": ["verify_insurance", "find_slots", "hold_slot", "escalate"],
+      "intake": { "child_name": "Bennett" }
+    }
+  }
+]

@@ -1,0 +1,584 @@
+{
+  "generated_at": "2026-05-15T14:11:28.785Z",
+  "summary": {
+    "total_items": 8,
+    "p0_count": 1,
+    "p1_count": 1,
+    "requires_human_review_count": 8
+  },
+  "items": [
+    {
+      "item_id": "item_1",
+      "classification": "new_referral",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Emma Lee",
+        "dob_or_age": "2018-09-04",
+        "parent_contact": "Daniel Lee, 555-0101, daniel.lee@example.com",
+        "discipline": [
+          "SLP"
+        ],
+        "diagnosis_or_concern": "articulation delay and reduced intelligibility",
+        "payer": "Blue Cross Blue Shield PPO",
+        "member_id": "BCBS-884200"
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZKVWQKWJSECGSWD3B10VX",
+          "name": "search_patient",
+          "args": {
+            "dob": "2018-09-04",
+            "name": "Emma Lee"
+          },
+          "result_summary": "0 patient matches"
+        },
+        {
+          "call_id": "01KRNZKVWSYY4TDM02TT7WH4T5",
+          "name": "verify_insurance",
+          "args": {
+            "member_id": "BCBS-884200",
+            "payer": "Blue Cross Blue Shield PPO"
+          },
+          "result_summary": "insurance status: in_network (Blue Cross Blue Shield PPO)"
+        },
+        {
+          "call_id": "01KRNZKVWS1C6CBGY6CT8NG03N",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Dr. Priya Nair, this is Cedar Kids Therapy. Confirming receipt of Emma Lee's referral. We received 1 attachment. Status: insurance verified in-network (auth required); intake is contacting the family to schedule.",
+            "channel": "phone",
+            "language": "en",
+            "recipient": "Dr. Priya Nair, Northside Pediatrics"
+          },
+          "result_summary": "created draft draft_01krnzkvws1kmnxv5vtm00f811 (phone, en)"
+        },
+        {
+          "call_id": "01KRNZKVWTKKCP7HX0DAKSXAVH",
+          "name": "find_slots",
+          "args": {
+            "discipline": "SLP",
+            "preferences": "after school Tuesdays or Thursdays"
+          },
+          "result_summary": "4 matching slots; earliest 2026-04-29T09:00:00-07:00 with Maya Chen, MS CCC-SLP"
+        },
+        {
+          "call_id": "01KRNZKVWTD0N6V19F23KB7F1X",
+          "name": "create_task",
+          "args": {
+            "assignee": "intake",
+            "due": "2026-04-29",
+            "notes": "Insurance verified in_network (auth required). 4 candidate slots returned by find_slots; staff to confirm preferences and complete scheduling. Family preferences: after school Tuesdays or Thursdays.",
+            "title": "Schedule evaluation for Emma Lee"
+          },
+          "result_summary": "created task task_01krnzkvwtjrqtdaqrvtnmv2zv for intake"
+        },
+        {
+          "call_id": "01KRNZKVWT00KNY7XR4KQPWBZM",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Daniel, we received Emma's referral from your pediatrician's office. We've verified the insurance and someone from our intake team will reach out soon to find an evaluation time that fits your schedule. Your plan does require prior authorization, so the team will walk you through that step before the evaluation is scheduled. Looking forward to meeting Emma.",
+            "channel": "email",
+            "language": "en",
+            "recipient": "daniel.lee@example.com"
+          },
+          "result_summary": "created draft draft_01krnzkvwt6jmgjetqa01b9yh1 (email, en)"
+        }
+      ],
+      "recommended_next_action": "Intake to confirm preferences and complete scheduling using returned slot options.",
+      "draft_reply": "Hi Daniel, we received Emma's referral from your pediatrician's office. We've verified the insurance and someone from our intake team will reach out soon to find an evaluation time that fits your schedule. Your plan does require prior authorization, so the team will walk you through that step before the evaluation is scheduled. Looking forward to meeting Emma.",
+      "task_ids": [
+        "task_01krnzkvwtjrqtdaqrvtnmv2zv"
+      ],
+      "escalation": null,
+      "decision_rationale": "Payer verified in_network (auth flagged); find_slots returned 4 options for SLP; intake to confirm and schedule."
+    },
+    {
+      "item_id": "item_2",
+      "classification": "safeguarding",
+      "urgency": "P0",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Leo",
+        "dob_or_age": "age 6",
+        "parent_contact": "Maria Gomez, 555-0102",
+        "discipline": [
+          "SLP"
+        ],
+        "diagnosis_or_concern": "speech evaluation request",
+        "payer": null,
+        "member_id": null
+      },
+      "missing_info": [
+        "insurance payer",
+        "insurance member ID"
+      ],
+      "tools_called": [
+        {
+          "call_id": "01KRNZKZZXCC2ZW9X92S4943TY",
+          "name": "escalate",
+          "args": {
+            "item_id": "item_2",
+            "reason": "Possible safeguarding disclosure in voicemail_transcript from Maria Gomez voicemail. Signal: Parent reports child's dad has been 'getting rough with him' during weekends..",
+            "severity": "P0"
+          },
+          "result_summary": "created escalation esc_01krnzkzzxpf18sse9ze9xpz9n severity P0"
+        },
+        {
+          "call_id": "01KRNZKZZYM4W02NCT1346CBVD",
+          "name": "lookup_policy",
+          "args": {
+            "topic": "safeguarding"
+          },
+          "result_summary": "2 policy snippets for safeguarding"
+        },
+        {
+          "call_id": "01KRNZKZZYSMVV68K7CKEFJRQQ",
+          "name": "create_task",
+          "args": {
+            "assignee": "clinical_lead",
+            "due": "2026-04-28T03:43:00.000Z",
+            "notes": "voicemail_transcript from Maria Gomez voicemail references possible caregiver harm. Signal: Parent reports child's dad has been 'getting rough with him' during weekends.. Per policy, do not provide investigative guidance over message. Clinical lead to review and follow up directly with family and any reporting obligations.",
+            "title": "Same-hour safeguarding review for Leo"
+          },
+          "result_summary": "created task task_01krnzkzzymhtdx9s2z1zv634y for clinical_lead"
+        },
+        {
+          "call_id": "01KRNZKZZZW7YEZP7WWDW8KJZX",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Maria, thank you for reaching out. Someone from our Cedar Kids Therapy team will be in touch with you directly soon.",
+            "channel": "phone",
+            "language": "en",
+            "recipient": "555-0102"
+          },
+          "result_summary": "created draft draft_01krnzkzzzvp655ezy62wzyz43 (phone, en)"
+        }
+      ],
+      "recommended_next_action": "Clinical lead to triage same-hour. Do not respond with investigative content; staff to call family directly.",
+      "draft_reply": "Hi Maria, thank you for reaching out. Someone from our Cedar Kids Therapy team will be in touch with you directly soon.",
+      "task_ids": [
+        "task_01krnzkzzymhtdx9s2z1zv634y"
+      ],
+      "escalation": {
+        "reason": "Possible safeguarding disclosure in voicemail_transcript from Maria Gomez voicemail. Signal: Parent reports child's dad has been 'getting rough with him' during weekends..",
+        "severity": "P0"
+      },
+      "decision_rationale": "Message body contains language suggesting caregiver-perpetrated harm. Safeguarding policy mandates P0 escalation, clinical-lead task, and a neutral staff-reviewed acknowledgement (no investigative messaging)."
+    },
+    {
+      "item_id": "item_3",
+      "classification": "new_referral",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Owen Brooks",
+        "dob_or_age": "2020-02-11",
+        "parent_contact": "Rachel Brooks, 555-0103, rachel.brooks@example.com",
+        "discipline": [
+          "OT"
+        ],
+        "diagnosis_or_concern": "sensory processing and feeding tolerance",
+        "payer": "Kaiser HMO",
+        "member_id": "KSR-4471"
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZM3S841CPX3285K02Z4F7",
+          "name": "search_patient",
+          "args": {
+            "dob": "2020-02-11",
+            "name": "Owen Brooks"
+          },
+          "result_summary": "0 patient matches"
+        },
+        {
+          "call_id": "01KRNZM3S8M0VR18CJ13ZXD77V",
+          "name": "verify_insurance",
+          "args": {
+            "member_id": "KSR-4471",
+            "payer": "Kaiser HMO"
+          },
+          "result_summary": "insurance status: out_of_network (Kaiser HMO)"
+        },
+        {
+          "call_id": "01KRNZM3S8RJ4E5WNAFRH2P7DW",
+          "name": "lookup_policy",
+          "args": {
+            "topic": "insurance"
+          },
+          "result_summary": "3 policy snippets for insurance"
+        },
+        {
+          "call_id": "01KRNZM3S8ANB9NG6WRT5ZET57",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Dr. Helena Yu, this is Cedar Kids Therapy. Confirming receipt of Owen Brooks's referral. We received 1 attachment. Status: Kaiser HMO is out-of-network for our practice; billing is contacting the family before any scheduling step.",
+            "channel": "phone",
+            "language": "en",
+            "recipient": "Dr. Helena Yu, Westside Pediatrics"
+          },
+          "result_summary": "created draft draft_01krnzm3s8r8jvv83sfbay8qd4 (phone, en)"
+        },
+        {
+          "call_id": "01KRNZM3S8X52N1SVBKZS0FE5G",
+          "name": "create_task",
+          "args": {
+            "assignee": "billing",
+            "due": "2026-04-29",
+            "notes": "Kaiser HMO returned out_of_network from billing verification. Per policy, a benefits conversation must happen before any slot hold or scheduling step.",
+            "title": "Out-of-network review for Owen Brooks"
+          },
+          "result_summary": "created task task_01krnzm3s8w8qfza44m2f52cxj for billing"
+        },
+        {
+          "call_id": "01KRNZM3S9A2MDZQKDSX0EPB31",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Rachel, we received Owen's referral from your pediatrician's office. Before we get started, our billing team needs to take a closer look at your Kaiser HMO plan since it looks like it may be out of network with us. Someone will reach out soon to walk through your options together. We're looking forward to meeting Owen.",
+            "channel": "email",
+            "language": "en",
+            "recipient": "rachel.brooks@example.com"
+          },
+          "result_summary": "created draft draft_01krnzm3s8x9mypmgqtgv7g8g5 (email, en)"
+        }
+      ],
+      "recommended_next_action": "Billing to discuss coverage options with the family before any slot is held.",
+      "draft_reply": "Hi Rachel, we received Owen's referral from your pediatrician's office. Before we get started, our billing team needs to take a closer look at your Kaiser HMO plan since it looks like it may be out of network with us. Someone will reach out soon to walk through your options together. We're looking forward to meeting Owen.",
+      "task_ids": [
+        "task_01krnzm3s8w8qfza44m2f52cxj"
+      ],
+      "escalation": null,
+      "decision_rationale": "Payer verified out_of_network; billing must hold a benefits conversation before any slot hold."
+    },
+    {
+      "item_id": "item_4",
+      "classification": "new_referral",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Mateo Ramirez",
+        "dob_or_age": "2019-03-15",
+        "parent_contact": "Carla Mendez, 555-0104, carla.mendez@example.com",
+        "discipline": [
+          "PT"
+        ],
+        "diagnosis_or_concern": "toe walking and frequent tripping",
+        "payer": "Aetna PPO",
+        "member_id": "AET-9910"
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZM8CG987NFVWJA5V31JG4",
+          "name": "search_patient",
+          "args": {
+            "dob": "2019-03-15",
+            "name": "Mateo Ramirez"
+          },
+          "result_summary": "1 patient match: Mateo Ramirez Jr. (2019-03-15)"
+        },
+        {
+          "call_id": "01KRNZM8CJ95N6PMMC94RSWYBQ",
+          "name": "verify_insurance",
+          "args": {
+            "member_id": "AET-9910",
+            "payer": "Aetna PPO"
+          },
+          "result_summary": "insurance status: in_network (Aetna PPO)"
+        },
+        {
+          "call_id": "01KRNZM8CJWSVSXKF1KT159N8Q",
+          "name": "create_task",
+          "args": {
+            "assignee": "front_desk",
+            "due": "2026-04-29",
+            "notes": "Existing patient on file with a different guardian than the message sender. Confirm legal guardian status before sharing any patient information or scheduling.",
+            "title": "Verify guardian relationship for Mateo Ramirez"
+          },
+          "result_summary": "created task task_01krnzm8cjx04y707azt1kgqe5 for front_desk"
+        },
+        {
+          "call_id": "01KRNZM8CKT83F7H34D49VAZVY",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Carla, thanks for reaching out about Mateo. Before we get started, someone from our team will reach out to confirm a few details with you. Really appreciate your patience.",
+            "channel": "email",
+            "language": "en",
+            "recipient": "carla.mendez@example.com"
+          },
+          "result_summary": "created draft draft_01krnzm8cjbb7w4gh4f5q2vbey (email, en)"
+        }
+      ],
+      "recommended_next_action": "Front desk to verify guardian relationship before sharing patient information.",
+      "draft_reply": "Hi Carla, thanks for reaching out about Mateo. Before we get started, someone from our team will reach out to confirm a few details with you. Really appreciate your patience.",
+      "task_ids": [
+        "task_01krnzm8cjx04y707azt1kgqe5"
+      ],
+      "escalation": null,
+      "decision_rationale": "search_patient matched Mateo Ramirez Jr., but sender (Carla Mendez) does not match guardian on file (Sofia Ramirez); flag for human verification before any scheduling step."
+    },
+    {
+      "item_id": "item_5",
+      "classification": "clinical_question",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Ava",
+        "dob_or_age": "age 4",
+        "parent_contact": "Jordan Kim",
+        "discipline": [
+          "SLP"
+        ],
+        "diagnosis_or_concern": "R sound articulation concern",
+        "payer": null,
+        "member_id": null
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZMCJ5G8XWYM1EWFWG6ZWB",
+          "name": "lookup_policy",
+          "args": {
+            "topic": "clinical_advice"
+          },
+          "result_summary": "2 policy snippets for clinical_advice"
+        },
+        {
+          "call_id": "01KRNZMCJ6PW9MHDYP4526RTSJ",
+          "name": "create_task",
+          "args": {
+            "assignee": "intake",
+            "due": "2026-04-29",
+            "notes": "Family asked a clinical question via portal_message. Per policy, do not provide clinical advice in writing. Offer a screening or evaluation pathway and book a callback if family is interested.",
+            "title": "Follow up on clinical question from Jordan Kim via parent portal"
+          },
+          "result_summary": "created task task_01krnzmcj6qfy171ktqtjhj6ms for intake"
+        },
+        {
+          "call_id": "01KRNZMCJ68V71VSC67C5QQEVB",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Jordan, thanks so much for reaching out about Ava, and totally understandable to want some reassurance. It's a little hard for us to give helpful guidance without meeting your child first, so our intake team would love to set up a quick screening with one of our speech-language pathologists. They can answer your questions in context. Someone will follow up to walk through next steps.",
+            "channel": "portal",
+            "language": "en",
+            "recipient": "Jordan Kim via parent portal"
+          },
+          "result_summary": "created draft draft_01krnzmcj60sgns8vpnz4q5jjj (portal, en)"
+        }
+      ],
+      "recommended_next_action": "Intake to call family, offer a screening or evaluation, and avoid clinical advice in any written reply.",
+      "draft_reply": "Hi Jordan, thanks so much for reaching out about Ava, and totally understandable to want some reassurance. It's a little hard for us to give helpful guidance without meeting your child first, so our intake team would love to set up a quick screening with one of our speech-language pathologists. They can answer your questions in context. Someone will follow up to walk through next steps.",
+      "task_ids": [
+        "task_01krnzmcj6qfy171ktqtjhj6ms"
+      ],
+      "escalation": null,
+      "decision_rationale": "Question asks for clinical advice on developmental norms. Policy forbids clinical advice over message; draft offers a screening pathway and a task routes to intake for follow-up."
+    },
+    {
+      "item_id": "item_6",
+      "classification": "missing_paperwork",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Sam Taylor",
+        "dob_or_age": null,
+        "parent_contact": null,
+        "discipline": [
+          "SLP"
+        ],
+        "diagnosis_or_concern": "speech delay in a school-age child",
+        "payer": null,
+        "member_id": null
+      },
+      "missing_info": [
+        "date of birth",
+        "parent contact info",
+        "insurance payer",
+        "insurance member ID"
+      ],
+      "tools_called": [
+        {
+          "call_id": "01KRNZMG61SHVSSM01TWPZ2DS6",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Dr. Omar Keene, this is Cedar Kids Therapy. Confirming receipt of Sam Taylor's referral. We received 1 attachment. Status: referral is missing date of birth, parent contact info, insurance payer, insurance member ID; please send a completed form so we can proceed.",
+            "channel": "phone",
+            "language": "en",
+            "recipient": "Dr. Omar Keene, Lakeview Pediatrics"
+          },
+          "result_summary": "created draft draft_01krnzmg61vqkpferbdx8jpq3t (phone, en)"
+        },
+        {
+          "call_id": "01KRNZMG62FXA5WGWQA7BG6GFZ",
+          "name": "create_task",
+          "args": {
+            "assignee": "intake",
+            "due": "2026-04-29",
+            "notes": "Referral missing: date of birth, parent contact info, insurance payer, insurance member ID. Contact referring practice (Lakeview Pediatrics fax) for completed form before proceeding with scheduling or insurance verification.",
+            "title": "Incomplete referral from Lakeview Pediatrics fax: request missing fields"
+          },
+          "result_summary": "created task task_01krnzmg62ejc7744rp32xtcd3 for intake"
+        }
+      ],
+      "recommended_next_action": "Intake to contact the referring practice for the missing fields. Do not contact the family until parent contact info is supplied.",
+      "draft_reply": null,
+      "task_ids": [
+        "task_01krnzmg62ejc7744rp32xtcd3"
+      ],
+      "escalation": null,
+      "decision_rationale": "Referral is missing the fields required to verify insurance or schedule. No parent contact is available, so no family draft is generated; task routes to intake to request a complete form."
+    },
+    {
+      "item_id": "item_7",
+      "classification": "new_referral",
+      "urgency": "P2",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Isabella Lopez",
+        "dob_or_age": "age 5",
+        "parent_contact": "Ana Lopez, 555-0107",
+        "discipline": [
+          "SLP"
+        ],
+        "diagnosis_or_concern": "evaluacion de habla",
+        "payer": "Medicaid",
+        "member_id": "MCD-55320"
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZMM2RYQQMVC7VCWQ5B6T7",
+          "name": "verify_insurance",
+          "args": {
+            "member_id": "MCD-55320",
+            "payer": "Medicaid"
+          },
+          "result_summary": "insurance status: in_network (Medicaid)"
+        },
+        {
+          "call_id": "01KRNZMM2RSXM5B2FZNFF7DYQ0",
+          "name": "find_slots",
+          "args": {
+            "discipline": "SLP",
+            "language": "es"
+          },
+          "result_summary": "2 matching slots; earliest 2026-04-30T11:00:00-07:00 with Lucia Morales, MA CCC-SLP"
+        },
+        {
+          "call_id": "01KRNZMM2RBR3E0YQD34CW0ABD",
+          "name": "lookup_policy",
+          "args": {
+            "topic": "language_access"
+          },
+          "result_summary": "2 policy snippets for language_access"
+        },
+        {
+          "call_id": "01KRNZMM2R1KQJS47RK64P4FZZ",
+          "name": "create_task",
+          "args": {
+            "assignee": "intake",
+            "due": "2026-04-29",
+            "notes": "Insurance verified in_network. 2 candidate slots returned by find_slots; staff to confirm preferences and complete scheduling.",
+            "title": "Schedule evaluation for Isabella Lopez"
+          },
+          "result_summary": "created task task_01krnzmm2rpz45shkhhrhjemw4 for intake"
+        },
+        {
+          "call_id": "01KRNZMM2RSS9320T4R7WRAJA1",
+          "name": "draft_message",
+          "args": {
+            "body": "Hola Ana, muchas gracias por comunicarse con nosotros sobre Isabella. Ya verificamos el seguro y un miembro del equipo se comunicara con usted en espanol pronto para encontrar un horario que les funcione bien. Tenemos muchas ganas de conocer a Isabella.",
+            "channel": "phone",
+            "language": "es",
+            "recipient": "555-0107"
+          },
+          "result_summary": "created draft draft_01krnzmm2rpv9ey5y5p9fw739t (phone, es)"
+        }
+      ],
+      "recommended_next_action": "Intake to confirm preferences and complete scheduling using returned slot options.",
+      "draft_reply": "Hola Ana, muchas gracias por comunicarse con nosotros sobre Isabella. Ya verificamos el seguro y un miembro del equipo se comunicara con usted en espanol pronto para encontrar un horario que les funcione bien. Tenemos muchas ganas de conocer a Isabella.",
+      "task_ids": [
+        "task_01krnzmm2rpz45shkhhrhjemw4"
+      ],
+      "escalation": null,
+      "decision_rationale": "Payer verified in_network; find_slots returned 2 options for SLP in Spanish; intake to confirm and schedule."
+    },
+    {
+      "item_id": "item_8",
+      "classification": "scheduling",
+      "urgency": "P1",
+      "requires_human_review": true,
+      "extracted_intake": {
+        "child_name": "Noah Patel",
+        "dob_or_age": "2017-11-02",
+        "parent_contact": "Anita Patel, 555-0108, anita.patel@example.com",
+        "discipline": [
+          "OT"
+        ],
+        "diagnosis_or_concern": null,
+        "payer": null,
+        "member_id": null
+      },
+      "missing_info": [],
+      "tools_called": [
+        {
+          "call_id": "01KRNZMQCFWW25E9G3WV3NC66M",
+          "name": "search_patient",
+          "args": {
+            "dob": "2017-11-02",
+            "name": "Noah Patel"
+          },
+          "result_summary": "1 patient match: Noah Patel (2017-11-02)"
+        },
+        {
+          "call_id": "01KRNZMQCGAFDDY8E6APYKH0TC",
+          "name": "lookup_policy",
+          "args": {
+            "topic": "cancellation"
+          },
+          "result_summary": "2 policy snippets for cancellation"
+        },
+        {
+          "call_id": "01KRNZMQCGPPENRMVP5Y8CGK4D",
+          "name": "find_slots",
+          "args": {
+            "discipline": "OT"
+          },
+          "result_summary": "1 matching slots; earliest 2026-05-05T10:00:00-07:00 with James Owens, OTR/L"
+        },
+        {
+          "call_id": "01KRNZMQCGCEKMQ6DE9WM9X7QD",
+          "name": "create_task",
+          "args": {
+            "assignee": "front_desk",
+            "due": "2026-04-28",
+            "notes": "Anita Patel <anita.patel@example.com> requests a same-day reschedule. Contact: Anita Patel, 555-0108, anita.patel@example.com. 1 candidate OT slot pre-pulled for review (per policy: agents may find slots for human review, must not schedule).",
+            "title": "Same-day reschedule: Noah Patel"
+          },
+          "result_summary": "created task task_01krnzmqcgc9zs7n2n5a26pzh0 for front_desk"
+        },
+        {
+          "call_id": "01KRNZMQCHDCFGY3D32MMC0500",
+          "name": "draft_message",
+          "args": {
+            "body": "Hi Anita, thanks so much for letting us know, and so sorry your little one isn't feeling well. Someone from our front desk will reach out shortly to take care of the cancellation and find another time that works. Sending well wishes to Noah.",
+            "channel": "email",
+            "language": "en",
+            "recipient": "anita.patel@example.com"
+          },
+          "result_summary": "created draft draft_01krnzmqchk1ayyan5vd815fvx (email, en)"
+        }
+      ],
+      "recommended_next_action": "Front desk to call family within the hour, confirm cancellation, and offer a makeup slot per provider capacity.",
+      "draft_reply": "Hi Anita, thanks so much for letting us know, and so sorry your little one isn't feeling well. Someone from our front desk will reach out shortly to take care of the cancellation and find another time that works. Sending well wishes to Noah.",
+      "task_ids": [
+        "task_01krnzmqcgc9zs7n2n5a26pzh0"
+      ],
+      "escalation": null,
+      "decision_rationale": "Same-day cancellation/reschedule is P1 per scheduling policy. Existing patient lookup performed; task created for front desk; family acknowledgement drafted without scheduling commitment."
+    }
+  ]
+}

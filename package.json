@@ -6,14 +6,19 @@
   "scripts": {
     "triage": "tsx src/index.ts",
     "validate": "tsx src/validate.ts",
+    "eval:generate": "tsx scripts/generate-eval-set.ts",
+    "eval": "tsx scripts/run-eval.ts",
     "typecheck": "tsc --noEmit",
     "package": "tar -czf take-home.tgz README.md package.json package-lock.json tsconfig.json .gitignore data/inbox.json data/policies.md data/providers.json data/example_output.json schema/output.schema.json src/agent.ts src/index.ts src/tools.ts src/types.ts src/validate.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
+    "dotenv": "^17.4.2",
     "tsx": "^4.19.2",
-    "ulid": "^2.3.0"
+    "ulid": "^2.3.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

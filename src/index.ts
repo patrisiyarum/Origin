@@ -1,8 +1,11 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
+import dotenv from "dotenv";
 import { runAgent } from "./agent.js";
 import { buildBatchOutput, configureTrace } from "./tools.js";
 import type { InboxItem } from "./types.js";
+
+dotenv.config({ override: true, quiet: true });
 
 interface CliArgs {
   input: string;
