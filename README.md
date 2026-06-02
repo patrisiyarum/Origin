@@ -75,4 +75,5 @@ The built-in validator checks the output format and tool-call trail. The eval sc
 - Add LLM-written drafts behind a safety filter, with templates as the fallback.
 - Add a confidence score so uncertain items can be routed to human classification sooner.
 - Track which policy rule shaped each decision, so reviewers can see why the agent acted.
+- Add an evidence check where the agent points to the exact message text behind each important decision.
 - Parse referral attachments if the actual files are available.
